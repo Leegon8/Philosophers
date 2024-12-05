@@ -6,7 +6,7 @@
 #    By: lauriane <lauriago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 15:36:42 by lauriane          #+#    #+#              #
-#    Updated: 2024/12/03 16:25:02 by lauriane         ###   ########.fr        #
+#    Updated: 2024/12/05 14:53:32 by lauriago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -MMD -pthread
 RM = rm -rf
 
 # **************************************************************************** #
-SRCS = check_args_ph.c init_ph.c main.c
+SRCS = check_args_ph.c init_ph.c main.c rutine_ph.c
 
 SRC_PATH := ./src/
 OBJ_PATH := ./tmp/

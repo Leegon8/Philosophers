@@ -6,7 +6,7 @@
 /*   By: lauriago <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:50:26 by lauriago          #+#    #+#             */
-/*   Updated: 2024/12/03 16:27:25 by lauriago         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:50:42 by lauriago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <pthread.h>
 
 /* ************************ Struct simplification *************************** */
-typedef struct s_philo  	t_philo;
+typedef struct s_philo		t_philo;
 typedef struct s_table		t_table;
 
-/* ***************************** Structures ********************************* */
+/* **************************** Structures ********************************** */
 struct	s_philo
 {
 	int				id;
@@ -53,10 +53,18 @@ struct	s_table
 /* **************************** check_args_ph.c ***************************** */
 int	ft_atoi(const char *str);
 int	is_digit(const char *str);
-void	init_struct(int ac, char **av, t_philo *ph);
 int	valide_args(int ac, char **av);
+void	init_struct(int ac, char **av, t_philo *ph);
 
+/* ******************************* init_ph.c ******************************** */
+void	init_struct(int ac, char **av, t_philo *ph);
+void	init_forks(t_table *table);
+void	init_philo(t_table *table);
 
+/* ***************************** rutine_ph.c ******************************** */
+void	*philo_lifestyle(void *arg);
+
+/* ****************************** colors_def ******************************** */
 # define BGRAY "\033[1;90m"
 # define BRED "\033[1;91m"
 # define BGREEN "\033[1;92m"

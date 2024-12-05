@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_args_ph.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lauriago <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:32:47 by lauriago          #+#    #+#             */
-/*   Updated: 2024/12/03 16:29:23 by lauriago         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:51:31 by lauriago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 /*
 	VERIFICACIÓN DE ARGUMENTOS:
-	1. Si no hay argumentos O si hay de más o de menos --> imprimir instrucciones.
-	2. Si hay el numero correcto de argumentos --> verificar si el argumento es un num.
+	1. Si no hay argumentos O si hay de más o 
+	de menos --> imprimir instrucciones.
+	
+	2. Si hay el numero correcto de 
+	argumentos --> verificar si el argumento es un num.
 
 	Si los argumentos son válidos (son num), entonces pasar por ft_atol
 */
@@ -87,7 +90,7 @@ int	valide_args(int ac, char **av)
 	return (1);
 }
 
-void	init_struct(int ac, char **av, t_philo *ph)
+/*void	init_struct(int ac, char **av, t_philo *ph)
 {
 	t_table	table;
 
@@ -104,4 +107,4 @@ void	init_struct(int ac, char **av, t_philo *ph)
 	}
 	if (ac == 6)
 		ph->table->must_eat_count = ft_atoi(av[5]);
-}
+}*/
