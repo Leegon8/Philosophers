@@ -6,7 +6,7 @@
 /*   By: lauriago <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:50:26 by lauriago          #+#    #+#             */
-/*   Updated: 2024/12/05 14:50:42 by lauriago         ###   ########.fr       */
+/*   Updated: 2024/12/08 18:04:23 by lauriago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,24 @@ struct	s_table
 	pthread_mutex_t	*forks;			// Arreglo de mutex para tenedores
 	pthread_mutex_t	print_mutex;	// Mutex para imprimir logs sin mezclar
 	int				simulation_stop;// Bandera para detener la simulación
+	long long		start_t;		// Start timer
 };
 
 /* **************************** check_args_ph.c ***************************** */
 int	ft_atoi(const char *str);
 int	is_digit(const char *str);
 int	valide_args(int ac, char **av);
-void	init_struct(int ac, char **av, t_philo *ph);
 
 /* ******************************* init_ph.c ******************************** */
-void	init_struct(int ac, char **av, t_philo *ph);
+void	init_structs(t_table *table, int ac, char **av);
 void	init_forks(t_table *table);
-void	init_philo(t_table *table);
+void	init_philo(t_table *table, char **av);
 
 /* ***************************** rutine_ph.c ******************************** */
-void	*philo_lifestyle(void *arg);
+//void	*philo_lifestyle(void arg);
+
+/* **************************** destroyer_ph.c ****************************** */
+void	clean_up(t_table *table);
 
 /* ****************************** colors_def ******************************** */
 # define BGRAY "\033[1;90m"
