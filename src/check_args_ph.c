@@ -76,35 +76,16 @@ int	valide_args(int ac, char **av)
 	if (ac < 5 || ac > 6)
 	{
 		print_instructions();
-		return (0);
+		return (1);
 	}
 	while (i < ac)
 	{
 		if (!is_digit(av[i]))
 		{
 			printf(BRED"Incorrect Arg/s\n"RESET);
-			return (0);
+			return (1);
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
-
-/*void	init_struct(int ac, char **av, t_philo *ph)
-{
-	t_table	table;
-
-	ph->table = malloc(sizeof(t_table));
-	if (!ph->table)
-		return ;
-	memset(&table, 0, sizeof(t_table));
-	if (ac >= 4)
-	{
-		ph->table->num_philo = ft_atoi(av[1]);
-		ph->t2die = ft_atoi(av[2]);
-		ph->t2eat = ft_atoi(av[3]);
-		ph->t2sleep = ft_atoi(av[4]);
-	}
-	if (ac == 6)
-		ph->table->must_eat_count = ft_atoi(av[5]);
-}*/

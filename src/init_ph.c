@@ -12,46 +12,20 @@
 
 #include "philo.h"
 
-/*void	init_philo(t_table *table)
+void	init_philo(t_table *table)
 {
 	int	i;
 
 	i = 0;
-
 	while (i < table->num_philo)
 	{
 		table->ph[i].id = i + 1;
-		if (pthread_create(&table->ph[i].hilo, NULL,
-			philo_lifestyle, &table->ph[i]) != 0) //TODO (philo_lifestile)
-			{
-				printf("Error al crear el hiloo\n");
-				exit(EXIT_FAILURE); // FUNCION NO AUTORIZADA !!
-			}
-		else
-			printf("Se ha creado un hilooo\n");
-		i++;
-	}
-}*/
-
-void	init_philo(t_table *table, char **av)
-{
-	t_philo	*philo;
-	int	i;
-
-	i = 0;
-	philo = &table->ph[i];
-	philo->t2die = ft_atoi(av[2]);
-	philo->t2eat = ft_atoi(av[3]);
-	philo->t2sleep = ft_atoi(av[4]);
-	while (i < table->num_philo)
-	{
-		philo->id = i + 1;
-		philo->meals_count = 0;
-		philo->last_meal_time = 0;
-		philo->is_eating = 0;
-		philo->table = table;
-		philo->left_fork = &table->forks[i];
-		philo->right_fork = &table->forks[(i + 1) % table->num_philo];
+		table->ph[i].meals_count = 0;
+		table->ph[i].last_meal_time = 0;
+		table->ph[i].is_eating = 0;
+		table->ph[i].table = table;
+		table->ph[i].left_fork = &table->forks[i];
+		table->ph[i].right_fork = &table->forks[(i + 1) % table->num_philo];
 		i++;
 	}
 }
@@ -85,11 +59,14 @@ void	init_table(t_table *table, int ac, char **av)
 	if (ac == 6)
 		table->must_eat_count = ft_atoi(av[5]);
 	table->simulation_stop = 0;
+	table->t2die = ft_atoi(av[2]);
+	table->t2eat = ft_atoi(av[3]);
+	table->t2sleep = ft_atoi(av[4]);
 }
 
 void	init_structs(t_table *table, int ac, char **av)
 {
 	init_table(table, ac, av);
 	init_forks(table);
-	init_philo(table, av);
+	init_philo(table);
 }

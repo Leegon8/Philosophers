@@ -29,9 +29,6 @@ struct	s_philo
 {
 	int				id;
 	pthread_t		hilo;
-	int				t2die;			// Tiempo máximo sin comer
-	int				t2eat;			// Tiempo para comer
-	int				t2sleep;		// Tiempo para dormir
 	int				meals_count;	// Número de comidas realizadas
 	pthread_mutex_t	*left_fork;		// Tenedor izquierdo
 	pthread_mutex_t	*right_fork;	// Tenedor derecho
@@ -44,12 +41,19 @@ struct	s_table
 {
 	int				num_philo;
 	int				must_eat_count;	// Número de comidas objetivo (opcional)
-	t_philo			*ph;
+	int				t2die;			// Tiempo máximo sin comer
+	int				t2eat;			// Tiempo para comer
+	int				t2sleep;		// Tiempo para dormir
 	pthread_mutex_t	*forks;			// Arreglo de mutex para tenedores
 	pthread_mutex_t	print_mutex;	// Mutex para imprimir logs sin mezclar
 	int				simulation_stop;// Bandera para detener la simulación
 	long long		start_t;		// Start timer
+	t_philo			*ph;
 };
+
+/* **************************** philosophers.c ***************************** */
+void	*philo_lifestyle(void *arg);
+void	start_simulation(t_table *table);
 
 /* **************************** check_args_ph.c ***************************** */
 int	ft_atoi(const char *str);
@@ -57,12 +61,22 @@ int	is_digit(const char *str);
 int	valide_args(int ac, char **av);
 
 /* ******************************* init_ph.c ******************************** */
-void	init_structs(t_table *table, int ac, char **av);
+void	init_philo(t_table *table);
 void	init_forks(t_table *table);
-void	init_philo(t_table *table, char **av);
+void	init_table(t_table *table, int ac, char **av);
+void	init_structs(t_table *table, int ac, char **av);
 
 /* ***************************** rutine_ph.c ******************************** */
 //void	*philo_lifestyle(void arg);
+void	take_forks(t_philo *philo);
+void	eat(t_philo *philo);
+void	drop_forks(t_philo *philo);
+void	ph_sleep(t_philo *philo);
+
+/* ****************************** utils.c *********************************** */
+long long	get_current_time();
+void	print_status(t_philo *philo, const char *message);
+void	*monitor(void *arg);
 
 /* **************************** destroyer_ph.c ****************************** */
 void	clean_up(t_table *table);

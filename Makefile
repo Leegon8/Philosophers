@@ -10,15 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME= philo
+NAME= philosophers
 
 CC= gcc -g
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address #-MMD -pthread
-
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address #-MMD -pthread
 RM = rm -rf
 
 # **************************************************************************** #
-SRCS = check_args_ph.c init_ph.c philosofers.c rutine_ph.c destroyer_ph.c
+SRCS = check_args_ph.c init_ph.c philosofers.c rutine_ph.c destroyer_ph.c \
+	utils.c
 
 SRC_PATH := ./src/
 OBJ_PATH := ./tmp/
