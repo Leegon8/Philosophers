@@ -25,7 +25,7 @@ The programs accepts the following argments:
     <td><h4 weigth="bold">Step 4: Status Log</h4><br>- Print status changes in the specified format ⭕<br>- Include timestamp in milliseconds ⭕<br>- Ensure that logs are not mixed ⭕</td>
   </tr>
   <tr>
-    <td><h4 weigth="bold">Step 2: Thread Implementation</h4><br>- Create a thread for each philosopher ✅<br>- Implement state change logic (eat, think, sleep) ⭕<br>- Manage the acquisition and release of forks ⭕</td>
+    <td><h4 weigth="bold">Step 2: Thread Implementation</h4><br>- Create a thread for each philosopher ✅<br>- Implement state change logic (eat, think, sleep) ✅<br>- Manage the acquisition and release of forks ✅</td>
      <td><h4 weigth="bold">Step 5: Optimization and Deadlock Prevention</h4><br>- Avoiding deadlocks between philosophers ⭕<br>- Implement strategies to prevent starvation ⭕<br>- Ensure that all philosophers are able to eat ⭕</td>
   </tr>
   <tr>
