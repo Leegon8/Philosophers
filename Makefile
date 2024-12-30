@@ -13,7 +13,7 @@
 NAME= philosophers
 
 CC= gcc -g
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address #-MMD -pthread
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -MMD -pthread
 RM = rm -rf
 
 # **************************************************************************** #

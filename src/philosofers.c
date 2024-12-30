@@ -39,7 +39,19 @@ void	start_simulation(t_table *table)
 			&table->ph[i]) != 0)
 		{
 			printf("Error al crear hilo para filosofo %d\n", i + 1);
-			break;
+			clean_up(table);
+			exit(EXIT_FAILURE);
+		}
+		if (pthread_create(&table->monitor_thread, NULL, monitor, table) != 0)
+		{
+			printf("Error al crear hilo monitor\n");
+			clean_up(table);
+			exit(EXIT_FAILURE);
+		}
+		if (pthread_join(table->monitor_thread, NULL) == 0)
+		{
+			printf("Monitor finalizado\n");
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
@@ -48,31 +60,11 @@ void	start_simulation(t_table *table)
 int	main(int ac, char **av)
 {
 	t_table		table;
-	pthread_t	monitor_thread;
-	int			i;
 
-	i = 0;
 	if (valide_args(ac, av) == 0)
 	{
 		init_structs(&table, ac, av);
 		start_simulation(&table);
-		if (pthread_create(&monitor_thread, NULL, monitor, &table) != 0)
-        {
-            printf("Error al crear el hilo de monitoreo\n");
-            clean_up(&table);
-            return 1;
-        }
-		// pthread_join(monitor_thread, NULL);
-		if (pthread_join(monitor_thread, NULL) != 0)
-    {
-        printf("Error joining monitor thread\n");
-        return (1);
-    }
-		while (i < table.num_philo)
-		{
-			pthread_detach(table.ph[i].hilo);
-            i++;
-		}
 		clean_up(&table);
 	}
 	return (0);

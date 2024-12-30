@@ -12,8 +12,21 @@
 
 #include "philo.h"
 
+void	clean_forks(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->num_philo)
+	{
+		pthread_mutex_destroy(&table->forks[i]);
+		i++;
+	}
+}
+
 void	clean_up(t_table *table)
 {
+	clean_forks(table);
 	if (table->ph)
 	{
 		free(table->ph);
@@ -24,4 +37,5 @@ void	clean_up(t_table *table)
 		free(table->forks);
 		table->forks = NULL;
 	}
+	pthread_mutex_destroy(&table->print_mutex);
 }

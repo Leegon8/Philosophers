@@ -40,6 +40,7 @@ void	init_forks(t_table *table)
 		if (pthread_mutex_init(&table->forks[i], NULL) != 0)
 		{
 			printf("Error al inicialilzar tenedor %d\n", i);
+			clean_up(table);
 			break;
 		}
 		i++;
@@ -56,12 +57,14 @@ void	init_table(t_table *table, int ac, char **av)
 		printf("Error: Memoria insuficiente\n");
 		exit(EXIT_FAILURE);
 	}
-	if (ac == 6)
-		table->must_eat_count = ft_atoi(av[5]);
 	table->simulation_stop = 0;
 	table->t2die = ft_atoi(av[2]);
 	table->t2eat = ft_atoi(av[3]);
 	table->t2sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		table->must_eat_count = ft_atoi(av[5]);
+	table->start_t = get_timestamp();
+	pthread_mutex_init(&table->print_mutex, NULL);
 }
 
 void	init_structs(t_table *table, int ac, char **av)

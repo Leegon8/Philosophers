@@ -32,7 +32,7 @@ struct	s_philo
 	int				meals_count;	// Número de comidas realizadas
 	pthread_mutex_t	*left_fork;		// Tenedor izquierdo
 	pthread_mutex_t	*right_fork;	// Tenedor derecho
-	long long		last_meal_time;	// Timestamp de la última comida
+	long		last_meal_time;		// Timestamp de la última comida
 	int				is_eating;		//Flag del estado de comida
 	t_table			*table;			// Puntero a la configuración general
 };
@@ -47,7 +47,8 @@ struct	s_table
 	pthread_mutex_t	*forks;			// Arreglo de mutex para tenedores
 	pthread_mutex_t	print_mutex;	// Mutex para imprimir logs sin mezclar
 	int				simulation_stop;// Bandera para detener la simulación
-	long long		start_t;		// Start timer
+	long		start_t;			// Start timer
+	pthread_t	monitor_thread;		// Monitor thread
 	t_philo			*ph;
 };
 
@@ -74,7 +75,7 @@ void	drop_forks(t_philo *philo);
 void	ph_sleep(t_philo *philo);
 
 /* ****************************** utils.c *********************************** */
-long long	get_current_time();
+long	get_timestamp();
 void	print_status(t_philo *philo, const char *message);
 void	*monitor(void *arg);
 
