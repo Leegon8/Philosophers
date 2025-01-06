@@ -40,17 +40,17 @@ static void	print_instructions(void)
 	printf(BYELLOW"╚═════════════════════════════════════════════╝\n\n");
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	i;
-	int	nbr;
+	long	i;
+	long	nbr;
 
 	i = 0;
 	nbr = 0;
+	if (str[i] == '+')
+		i++;
 	while (str[i] == 32 || str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
 		|| str[i] == '\v' || str[i] == '\f')
-		i++;
-	if (str[i] == '+')
 		i++;
 	while (str[i] != '\0' && is_digit(&str[i]))
 		nbr = (nbr * 10) + (str[i++] - '0');
@@ -61,6 +61,8 @@ int	is_digit(const char *str)
 {
 	while (*str)
 	{
+		if (*str == '+')
+			str++;
 		if (!(*str >= '0' && *str <= '9'))
 			return (0);
 		str++;

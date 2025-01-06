@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME= philosophers
+NAME= philo
 
 CC= gcc -g
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -MMD -pthread
@@ -109,7 +109,7 @@ total_ticks=$$((PROGRESS_DURATION * 10)); # 20 ticks por segundo para una actual
 	done;
 
 	printf "\n\n  $(YELLOW)▄████▄   $(BBLUE)▄█████▄  ${BRED}▄█████▄                   ${PURPLE}▄█████▄  $(BCIAN)▄█████▄\n \
-$(YELLOW)████▄███  $(BBLUE)██${PHA}▄$(BBLUE)█$(PHA)▄█$(BBLUE)█${RES}  ${BRED}█$(WHITE)▄ ${BRED}█$(WHITE)▄ ${BRED}█ $(GREEN)   ${BOLD}$(NAME)   ${PURPLE}█$(WHITE) ▀${PURPLE}█$(WHITE) ▀${PURPLE}█  ${BCIAN}█$(WHITE)▀ ${BCIAN}█$(WHITE)▀ ${BCIAN}█\n \
+$(YELLOW)████▄███  $(BBLUE)██${PHA}▄$(BBLUE)█$(PHA)▄█$(BBLUE)█${RES}  ${BRED}█$(WHITE)▄ ${BRED}█$(WHITE)▄ ${BRED}█ $(GREEN)    ${BOLD}philosofers   ${PURPLE}█$(WHITE) ▀${PURPLE}█$(WHITE) ▀${PURPLE}█  ${BCIAN}█$(WHITE)▀ ${BCIAN}█$(WHITE)▀ ${BCIAN}█\n \
 $(YELLOW)████▄     $(BBLUE)█${PHA}▀▄▀▄▀${BBLUE}█${RES}  ${BRED}███████  $(WHITE)      lauriago   ${PURPLE}███████  ${BCIAN}███████\n \
 $(YELLOW) ▀████▀   $(BBLUE)█▀█▀█▀█  ${BRED}█ █ █ █                   ${PURPLE}█ █ █ █  ${BCIAN}█ █ █ █\n\n";
 

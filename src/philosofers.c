@@ -17,13 +17,19 @@ void	*philo_lifestyle(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->table->num_philo == 1)
+	{
+		print_status(philo, CIAN"has taken the only fork it has"RESET);
+		usleep(philo->table->t2die * 1000);
+		print_status(philo, BRED"died"RESET);
+		return (NULL);
+	}
 	while (!philo->table->simulation_stop)
 	{
 		take_forks(philo);
 		eat(philo);
-		drop_forks(philo);
 		ph_sleep(philo);
-		print_status(philo, "is thinking");
+		print_status(philo, BYELLOW"is thinking"RESET);
 	}
 	return (NULL);
 }
@@ -33,29 +39,26 @@ void	start_simulation(t_table *table)
 	int	i;
 
 	i = 0;
+	if (pthread_create(&table->monitor_thread, NULL, monitor, table) != 0)
+		return ;
 	while (i < table->num_philo)
 	{
 		if (pthread_create(&table->ph[i].hilo, NULL, philo_lifestyle,
-			&table->ph[i]) != 0)
+				&table->ph[i]) != 0)
 		{
-			printf("Error al crear hilo para filosofo %d\n", i + 1);
-			clean_up(table);
+			table->simulation_stop = 1;
 			return ;
-		}	
-		if (pthread_create(&table->monitor_thread, NULL, monitor, table) != 0)
-		{
-			printf("Error al crear hilo monitor\n");
-			clean_up(table);
-			return;
 		}
+		usleep(100);
 		i++;
 	}
-
-	if (pthread_join(table->monitor_thread, NULL) == 0)
+	i = 0;
+	while (i < table->num_philo)
 	{
-		printf("Monitor finalizado\n");
-		exit(EXIT_FAILURE);
+		pthread_join(table->ph[i].hilo, NULL);
+		i++;
 	}
+	pthread_join(table->monitor_thread, NULL);
 }
 
 int	main(int ac, char **av)
@@ -67,6 +70,7 @@ int	main(int ac, char **av)
 		init_structs(&table, ac, av);
 		start_simulation(&table);
 		clean_up(&table);
+		printf("\n🍽  End of feast sim 🍽\n\n");
 	}
 	return (0);
 }

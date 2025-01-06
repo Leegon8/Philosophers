@@ -32,7 +32,7 @@ struct	s_philo
 	int				meals_count;	// Número de comidas realizadas
 	pthread_mutex_t	*left_fork;		// Tenedor izquierdo
 	pthread_mutex_t	*right_fork;	// Tenedor derecho
-	long		last_meal_time;		// Timestamp de la última comida
+	long			last_meal_time;		// Timestamp de la última comida
 	int				is_eating;		//Flag del estado de comida
 	t_table			*table;			// Puntero a la configuración general
 };
@@ -47,8 +47,8 @@ struct	s_table
 	pthread_mutex_t	*forks;			// Arreglo de mutex para tenedores
 	pthread_mutex_t	print_mutex;	// Mutex para imprimir logs sin mezclar
 	int				simulation_stop;// Bandera para detener la simulación
-	long		start_t;			// Start timer
-	pthread_t	monitor_thread;		// Monitor thread
+	long			start_t;			// Start timer
+	pthread_t		monitor_thread;		// Monitor thread
 	t_philo			*ph;
 };
 
@@ -57,29 +57,32 @@ void	*philo_lifestyle(void *arg);
 void	start_simulation(t_table *table);
 
 /* **************************** check_args_ph.c ***************************** */
-int	ft_atoi(const char *str);
-int	is_digit(const char *str);
-int	valide_args(int ac, char **av);
+// int	ft_atoi(const char *str);
+long	ft_atol(const char *str);
+int		is_digit(const char *str);
+int		valide_args(int ac, char **av);
 
 /* ******************************* init_ph.c ******************************** */
+int		init_table(t_table *table, int ac, char **av);
+int		init_mutex(t_table *table);
 void	init_philo(t_table *table);
-void	init_forks(t_table *table);
-void	init_table(t_table *table, int ac, char **av);
 void	init_structs(t_table *table, int ac, char **av);
 
 /* ***************************** rutine_ph.c ******************************** */
 //void	*philo_lifestyle(void arg);
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
-void	drop_forks(t_philo *philo);
+// void	drop_forks(t_philo *philo);
 void	ph_sleep(t_philo *philo);
 
 /* ****************************** utils.c *********************************** */
-long	get_timestamp();
+long	get_timestamp(void);
 void	print_status(t_philo *philo, const char *message);
+int		check_philo_status(t_table *table, int *i, int *all_ate);
 void	*monitor(void *arg);
 
 /* **************************** destroyer_ph.c ****************************** */
+void	clean_forks(t_table *table);
 void	clean_up(t_table *table);
 
 /* ****************************** colors_def ******************************** */
