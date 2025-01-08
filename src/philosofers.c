@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosofers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauriane <lauriago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leegon <leegon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:15:44 by lauriane          #+#    #+#             */
-/*   Updated: 2024/12/30 14:36:32 by lauriago         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:50:23 by leegon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	*philo_lifestyle(void *arg)
 	{
 		print_status(philo, CIAN"has taken the only fork it has"RESET);
 		usleep(philo->table->t2die * 1000);
-		print_status(philo, BRED"died"RESET);
 		return (NULL);
 	}
 	while (!philo->table->simulation_stop)
@@ -49,7 +48,7 @@ void	start_simulation(t_table *table)
 			table->simulation_stop = 1;
 			return ;
 		}
-		usleep(100);
+		usleep(1000);
 		i++;
 	}
 	i = 0;

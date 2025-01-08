@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ph.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauriane <lauriago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: leegon <leegon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:29:16 by lauriane          #+#    #+#             */
-/*   Updated: 2024/12/08 17:51:30 by lauriago         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:04:25 by leegon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	init_philo(t_table *table)
 	i = 0;
 	while (i < table->num_philo)
 	{
+		if (pthread_mutex_init(&table->ph[i].state_mutex, NULL) != 0)
+			return ;
 		table->ph[i].id = i + 1;
 		table->ph[i].meals_count = 0;
 		table->ph[i].last_meal_time = get_timestamp() - table->start_t;

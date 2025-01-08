@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lauriago <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: leegon <leegon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 15:50:26 by lauriago          #+#    #+#             */
-/*   Updated: 2024/12/08 18:04:23 by lauriago         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:09:06 by leegon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct	s_philo
 	int				meals_count;	// Número de comidas realizadas
 	pthread_mutex_t	*left_fork;		// Tenedor izquierdo
 	pthread_mutex_t	*right_fork;	// Tenedor derecho
+	pthread_mutex_t	state_mutex;	// Mutex para estado de los filosofos
 	long			last_meal_time;		// Timestamp de la última comida
 	int				is_eating;		//Flag del estado de comida
 	t_table			*table;			// Puntero a la configuración general
@@ -72,7 +73,7 @@ void	init_structs(t_table *table, int ac, char **av);
 //void	*philo_lifestyle(void arg);
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
-// void	drop_forks(t_philo *philo);
+void	drop_forks(t_philo *philo);
 void	ph_sleep(t_philo *philo);
 
 /* ****************************** utils.c *********************************** */
